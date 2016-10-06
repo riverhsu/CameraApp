@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var pickiedImaged: UIImageView!
+    @IBOutlet weak var pickedImaged: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,7 +53,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func saveBtn(_ sender: UIButton) {
         // UIImageJPEGRepresentation(<#T##image: UIImage##UIImage#>, <#T##compressionQuality: CGFloat##CGFloat#>)
-        let imageData = UIImageJPEGRepresentation(pickiedImaged.image!, 0.6)
+        let imageData = UIImageJPEGRepresentation(pickedImaged.image!, 0.6)
         let compressedJPEGImage = UIImage(data:imageData!)
         /*
         UIImageWriteToSavedPhotosAlbum(<#T##image: UIImage##UIImage#>, <#T##completionTarget: Any?##Any?#>, <#T##completionSelector: Selector?##Selector?#>, <#T##contextInfo: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>)
@@ -63,9 +63,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     //以下的 function 不在自動提示，是手動寫.
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject: AnyObject]) {
-        pickiedImaged.image = image
+        pickedImaged.image = image
         self.dismiss(animated: true, completion: nil);
+    }
+    /*
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            pickedImaged.contentMode = .scaleAspectFit
+            pickedImaged.image = pickedImage
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    */
+    
+    func saveNotice(){
+        let alertController = UIAlertController(title: "Image saved", message: "Your picture was successfully save", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
