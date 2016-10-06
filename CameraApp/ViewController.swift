@@ -5,6 +5,7 @@
 //  Created by Sgmedical on 2016/10/6.
 //  Copyright © 2016年 Sgmedical. All rights reserved.
 //
+//  reference: www.codingexplorer.com/choosing-images-with-uiimagepickercontroller-in-swift/
 
 import UIKit
 
